@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+decode_base64_url() {
+  local len=$((${#1} % 4))
+  local result="$1"
+  if [ $len -eq 2 ]; then
+    result="$1"'=='
+  elif [ $len -eq 3 ]; then
+    result="$1"'='
+  fi
+  echo "$result" | tr '_-' '/+' | base64 -D
+}
+
+# Header
+decode_base64_url $(echo -n $1 | cut -d "." -f 1) | jq .
+
+# Payload
+# TIMESTAMP => decode_base64_url $(echo -n $1 | cut -d "." -f 2) | jq .
+# SHOW UTC  => decode_base64_url $(echo -n $1 | cut -d "." -f 2) | jq 'if .exp then (.exp_ = (.exp|todate)) else . end'
+decode_base64_url $(echo -n $1 | cut -d "." -f 2) | jq 'if .exp then (.exp_ = (.exp|gmtime|strftime("%Y-%m-%dT%H:%M:%S %Z"))) else . end'
