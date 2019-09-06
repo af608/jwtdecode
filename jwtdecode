@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#
+# Script Name: jwtdecode
+#
+# Author: Andreas Frank
+# Date : 05/20/2019
+#
+# Description: The following script gets a (encoded) JWT string and decodes the information
 
 decode_base64_url() {
   local len=$((${#1} % 4))
