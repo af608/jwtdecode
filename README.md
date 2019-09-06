@@ -12,6 +12,7 @@ The command-line JSON processor "jq"
 # Install
 
 => `wget https://raw.githubusercontent.com/af608/jwtdecode/master/jwtdecode`
+
 => `chmod u+x ./jwtdecode`
 
 # Use
