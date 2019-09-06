@@ -9,6 +9,11 @@ The command-line JSON processor "jq"
 
 => `brew install jq`
 
-# use
+# Install
+
+=> `wget https://raw.githubusercontent.com/af608/jwtdecode/master/jwtdecode`
+=> `chmod u+x ./jwtdecode`
+
+# Use
 
 `jwtdecode $TOKEN`
